@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Sun Dec 23 23:37:37 IST 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0167-dc40-3fa7-000003bd45d0 
+on database directory G:\springboot\dijkstra\target\test with class loader org.springframework.boot.loader.LaunchedURLClassLoader@33c7353a 
+Loaded from jar:file:/G:/springboot/dijkstra/target/demo-0.0.1-SNAPSHOT.jar!/BOOT-INF/lib/derby-10.12.1.1.jar!/
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_131-b11
+user.dir=G:\springboot\dijkstra\target
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

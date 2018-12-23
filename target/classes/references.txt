@@ -1,0 +1,2 @@
+https://stackoverflow.com/questions/8459284/using-hibernate-with-embedded-derby
+http://zetcode.com/db/hibernatederby/

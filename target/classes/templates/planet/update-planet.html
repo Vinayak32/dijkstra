@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Shortest Path - Variables</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	 <link rel="stylesheet" type="text/css" media="all"
+      href="../../css/thvsjsp.css" th:href="@{/css/thvsjsp.css}"/>
+</head>
+<body>
+<form  th:action="@{/update/{id}(id=${planet.id})}" th:object="${planet}" method="post">
+    <label for="name">Name</label>
+    <input type="text" th:field="*{planetName}" id="planetName" placeholder="Name" />
+    <span th:if="${#fields.hasErrors('planetName')}" th:errors="*{planetName}"></span>
+    <label for="node">Email</label>
+    <input type="text" th:field="*{node}" id="node" placeholder="Email" />
+    <span th:if="${#fields.hasErrors('node')}" th:errors="*{node}"></span>
+    <input type="submit" value="Update Planet"/>   
+</form>
+</body>
+</html>

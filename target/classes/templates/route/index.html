@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Shortest Path - Variables</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	 <link rel="stylesheet" type="text/css" media="all"
+      href="../../css/thvsjsp.css" th:href="@{/css/thvsjsp.css}"/>
+</head>
+<body>
+<div th:switch="${routes}">
+    <h2 th:case="null">No routes yet!</h2>
+        <div th:case="*">
+            <h2>Routes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Origin</th>
+                        <th>Destination</th>
+                        <th>Distance</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="route: ${routes}">
+                    <td th:text="${route.planetOrigin.planetName}"></td>
+                    <td th:text="${route.destination.planetName}"></td>
+                    <td th:text="${route.Distance}"></td>
+                    <td><a th:href="@{/editroute/{id}(id=${route.id})}">Edit</a></td>
+                    <td><a th:href="@{/deleteroute/{id}(id=${route.id})}">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>      
+   <div>
+    <p><a href="/addroute">Add a new route</a></p>
+    <p><a href="/index">Manage Planets</a></p>
+    <p><a href="/dijkstra">Find shortest path</a></p>     
+    
+</div>
+</div>
+</body>
+</html>

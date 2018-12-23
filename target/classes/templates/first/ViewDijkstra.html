@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Shortest Path - Variables</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+</head>
+<body>
+<div class="container">
+
+    <h2>Product Details</h2>
+    <div>
+        <form class="form-horizontal" th:object="${productForm}" th:action="@{/dijkstra}" method="post">
+			<p>Start</p><br/>
+            <input type="text" name="Start" id="Start"/><br/>
+            	<p>End</p><br/>
+            <input type="text" name="End" id="End"/><br/>
+
+            <div class="row">
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

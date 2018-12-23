@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Shortest Path - Variables</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	 <link rel="stylesheet" type="text/css" media="all"
+      href="../../css/thvsjsp.css" th:href="@{/css/thvsjsp.css}"/>
+</head>
+<body>
+<div class="container">
+
+    <h2>Planet Added</h2>
+    <div>
+        <form class="form-horizontal" th:object="${planetForm}"   th:action="@{/addPlanet}" method="post">
+			<p>Planet</p><br/>
+            <input type="text" id="planetName" th:field="*{name}"/><br/>
+            	<p>End</p><br/>
+            <input type="text" id="planetNode" th:field="*{node}"/><br/>
+
+            <div class="row">
+                <button type="submit" class="btn btn-default">Add</button>
+            </div>
+            
+           
+			<!-- IF CUSTOMER IS ANONYMOUS -->
+			<div th:if="${planetForm.added}">
+				   <div th:text="'The planet '+ ${planetForm.planetNode} +' added to Database '"> </div>
+			</div>
+			<!-- ELSE -->
+			<div th:unless="${planetForm.added}">
+			  
+			</div>
+         
+            
+            
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
