@@ -3,13 +3,10 @@ package com.example;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.nio.file.Files;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Properties;
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -28,10 +25,30 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.springframework.util.ResourceUtils;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Properties;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ResourceLoaderAware;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.beans.factory.annotation.Autowired;
+
 //@SpringBootApplication
 
 public class ExcelFileReader {
 
+    @Value("classpath:excellRead.xlsx") private static Resource aResource;
+	
+	@Autowired
+    private static ResourceLoader resourceLoader;
+	
+	
+	//final Resource fileResource = resourceLoader.getResource("classpath:/excellRead.xlsx");
+	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		// TODO Auto-generated method stub
 		HibernateInitializator temp = new HibernateInitializator();
@@ -50,7 +67,11 @@ public class ExcelFileReader {
 		// Properties properties = new Properties();
 
 		// File file = ResourceUtils.getFile("classpath:excelRead.xlsx");
-		File file = new File("G:/Seagate Dashboard 2.0/WP6PORTAL/springboot/demo/src/main/resources/excellRead.xlsx");
+		String fileName = "excellRead.xlsx";
+        ClassLoader classLoader = new ExcelFileReader().getClass().getClassLoader();
+ 
+        File file = new File(classLoader.getResource(fileName).getFile());
+		//File file = new File("G:/Seagate Dashboard 2.0/WP6PORTAL/springboot/demo/src/main/resources/excellRead.xlsx");
 		InputStream in = new FileInputStream(file);
 
 		FileInputStream fis = new FileInputStream(file);
@@ -392,13 +413,36 @@ public class ExcelFileReader {
 	public static void readExcel() throws IOException {
 
 		// File file = ResourceUtils.getFile("classpath:excelRead.xlsx");
-		File file = new File("G:/Seagate Dashboard 2.0/WP6PORTAL/springboot/demo/src/main/resources/excellRead.xlsx");
-		InputStream in = new FileInputStream(file);
+		String fileName = "excellRead.xlsx";
+		Resource fileResource = null;
+        ClassLoader classLoader = new ExcelFileReader().getClass().getClassLoader();
+ 
+        //File file = new File(classLoader.getResource(fileName).getFile());
+		if(aResource !=null){
+			System.out.println("The  aResource" +aResource +" Resource exists ");
+			
+		}
+		if (resourceLoader !=null )
+			{ System.out.println("The  resourceLoader" +resourceLoader +" Resource exists ");
+				 fileResource =  resourceLoader.getResource("classpath:excellRead.xlsx");
+			  if (fileResource !=null){
+				  System.out.println("The  fileResource " +fileResource +" Resource exists ");
+			  }
+			 }
+		//File file =  ResourceUtils.getFile("classpath:excellRead.xlsx");
+		//InputStream in = ResourceUtils.getURL(fileName).openStream();
+		String prefixedResourcePath = ResourceUtils.CLASSPATH_URL_PREFIX + fileName;
+	    ClassPathResource classPathResource = new ClassPathResource(prefixedResourcePath);
 
-		FileInputStream fis = new FileInputStream(file);
+	    if (classPathResource.exists()) {
+			System.out.println("The fileName " +fileName +" Resource exists ");
+		}
+		//File file = new File("G:/Seagate Dashboard 2.0/WP6PORTAL/springboot/demo/src/main/resources/excellRead.xlsx");
+		//InputStream in = new FileInputStream(file);
+
+		//FileInputStream fis = new FileInputStream(file);
 		// Finds the workbook instance for XLSX file
-		XSSFWorkbook myWorkBook = new XSSFWorkbook(fis);
-
+		XSSFWorkbook myWorkBook = new XSSFWorkbook(classPathResource.getInputStream());
 		// Read the Planet Names excel Sheet
 		XSSFSheet mySheet = myWorkBook.getSheetAt(0);
 		List<PlanetNames> pNames = readPlanetNames(mySheet);
