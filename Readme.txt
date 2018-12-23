@@ -19,4 +19,4 @@ The project contains the following test cases
 
 4. http://localhost:8080/planet
    
- 
+ Please run the application as target\java -jar demo-0.0.1-SNAPSHOT.jar
