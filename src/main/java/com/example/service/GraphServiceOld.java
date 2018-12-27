@@ -1,4 +1,4 @@
-package com.example.service;
+/*package com.example.service;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,14 +16,14 @@ import com.example.domain.PlanetNames;
 import com.example.domain.Routes;
 import com.example.repositories.PlanetNamesRepository;
 import com.example.repositories.RoutesRepository;
-import com.example.util.DijkstraAlgoNew;
+import com.example.util.DijkstraAlgo;
 import com.example.util.Graph;
 
 
 @Configuration
 @Service
 @Transactional
-public class GraphService {
+public class GraphServiceOld {
 	    @Autowired
 	    PlanetNamesRepository respository;
 	    
@@ -31,9 +32,8 @@ public class GraphService {
 	    
 	    List<Routes> allRoutes ;
 	    List<PlanetNames> allPlanets;
-	    //DijkstraAlgo dAlgo; 
+	    DijkstraAlgo dAlgo; 
 	    
-	    DijkstraAlgoNew dAlgo; 
 	    Graph gph;
 	 
 		@Autowired
@@ -55,7 +55,7 @@ public class GraphService {
 		}
 		public float useDijkstra(PlanetNames start, PlanetNames end, List<PlanetNames> list, List<Routes> list2) { 
 			float distance = 0;
-			    getPlanets();
+			getPlanets();
 				getRoutes();
 				System.out.println("Planet Names "+list.size());
 				System.out.println("Routes "+list2.size());
@@ -63,25 +63,31 @@ public class GraphService {
 				prepareGraph(list,list2);
 				System.out.println("Routes gph.getEdges().size() " +gph.getEdges().size());
 				System.out.println("Planet Names gph.getEdges().size() " +gph.getVertexes().size());
-				dAlgo = new DijkstraAlgoNew();
+				dAlgo = new DijkstraAlgo(gph);
 				// Lets check from location Loc_1 to Loc_10
-				dAlgo.setNodes(list);
-				dAlgo.setEdges(list2);
-				dAlgo.setNumberOfNodes(list.size());
+				
 				//PlanetNames names=PlanetNames.NodePlanetFromNodeId("\)
-				dAlgo.instantiateGraph(); 
-				dAlgo.fillGraph();
-				dAlgo.algoPrepare(list.get(0));
-		         
-		        distance += dAlgo.getDistance(start,end);
-		        	
-		         System.out.println("distance "+distance);
+				dAlgo.execute(list.get(0));
+		        LinkedList<PlanetNames> path = dAlgo.getPath(end);
+		       
+
+		        PlanetNames pElem =null , pElem2=null ;
+		        //assertNotNull(path);
+		        //assertTrue(path.size() > 0);
+                Iterator itr = path.iterator();
+		        while (itr.hasNext()) {
+		        	pElem  = (PlanetNames)itr.next();
+		        	if(itr.hasNext())
+		        	 { pElem2 = (PlanetNames)itr.next();
+		        	   distance += dAlgo.getDistance(pElem,pElem2);
+		        	 }
+		            System.out.println("distance "+distance);
 		            
-		        
+		        }
 				
 			return distance;
 		}
 		
 		
 		
-}
+}*/

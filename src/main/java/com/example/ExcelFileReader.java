@@ -7,6 +7,8 @@ import java.nio.file.Files;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -28,9 +30,11 @@ import org.hibernate.cfg.Configuration;
 import org.springframework.util.ResourceUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.core.io.Resource;
@@ -128,7 +132,9 @@ public class ExcelFileReader {
 				int cellCntr = 0;
 				while (cellIterator.hasNext()) {
 					Cell cell = cellIterator.next();
-
+					
+					// default set Planet id 
+					p.setId(cellCntr+1);
 					switch (cell.getCellType()) {
 					case Cell.CELL_TYPE_STRING:
 						System.out.print(cell.getStringCellValue() + "\t");
@@ -437,12 +443,19 @@ public class ExcelFileReader {
 	    if (classPathResource.exists()) {
 			System.out.println("The fileName " +fileName +" Resource exists ");
 		}
-		//File file = new File("G:/Seagate Dashboard 2.0/WP6PORTAL/springboot/demo/src/main/resources/excellRead.xlsx");
+		//File file = new File("D:/springgit/src/main/resources/excellRead.xlsx");
 		//InputStream in = new FileInputStream(file);
 
 		//FileInputStream fis = new FileInputStream(file);
 		// Finds the workbook instance for XLSX file
 		XSSFWorkbook myWorkBook = new XSSFWorkbook(classPathResource.getInputStream());
+		/*XSSFWorkbook myWorkBook = null;
+		try {
+		   myWorkBook = new XSSFWorkbook(file);
+		}
+		catch( InvalidFormatException inE){
+			System.out.println("InvalidFormat Exception "+inE.getMessage());
+		}*/
 		// Read the Planet Names excel Sheet
 		XSSFSheet mySheet = myWorkBook.getSheetAt(0);
 		List<PlanetNames> pNames = readPlanetNames(mySheet);

@@ -11,10 +11,7 @@ import java.util.Set;
 import com.example.domain.PlanetNames;
 import com.example.domain.Routes;
 
-/*
- http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html#dijkstra
- 
- */
+
 public class DijkstraAlgo{
 
     private final List<PlanetNames> nodes;
