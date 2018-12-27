@@ -18,11 +18,11 @@ import com.example.domain.PlanetVertex;
 import com.example.domain.Routes;
 
 
-public class DijkstraAlgoNew{
+public class DijkstraAlgoNew {
 
     private  List<PlanetNames> nodes;
     private  List<Routes> edges;
-   
+       
     private float     distances[];
     private Set<Integer> visitted;
     private Set<Integer> unvistted;
@@ -249,64 +249,7 @@ public class DijkstraAlgoNew{
         return distance;
     }
 
- 
-    
-   public static void main(String[] args) {
-	
-	 /* DijkstraAlgo mA  = new  DijkstraAlgo ();
-	  
-	  
-	  List<Routes> rlNames = Arrays.asList(new Routes[]{new Routes("1"	,"A"	,"B"	,"0.44"),
-			                                new Routes("2"	,"A"	,"C"	,"1.89"),
-			                                new Routes("3"	,"A"	,"D"	,"0.10"),
-			                                new Routes("4"	,"B"	,"H"	,"2.44"),
-			                                new Routes("5"	,"B"	,"E"	,"3.45"),
-			                                new Routes("6"	,"C"	,"F"	,"0.49"),
-			                                new Routes("7"	,"D"	,"L"	,"2.34"),
-			                                new Routes("8"	,"D"	,"M"	,"2.61"),
-			                                new Routes("9"	,"H"	,"G"	,"3.71"),
-			                                }); 
-	   mA.setEdges(rlNames);
-	   
-	   List<
-PlanetNames> plNames = Arrays.asList(new PlanetNames[]{new PlanetNames("A","Earth"),
-               new PlanetNames("B","Moon"),
-               new PlanetNames("C"	,"Jupiter"),
-               new PlanetNames("D"	,"Venus"),
-               new PlanetNames("E"	,"Mars"),
-               new PlanetNames("F"	,"Saturn"),
-               new PlanetNames("G"	,"Uranus"),
-               new PlanetNames("H"	,"Pluto"),
-               new PlanetNames("I"	,"Neptune"	),
-               new PlanetNames("J"	,"Mercury"),
-               new PlanetNames("K"	,"Alpha Centauri"),
-               new PlanetNames("L"	,"Luhman 16"	),
-               new PlanetNames("M"	,"Epsilon Eridani"	),
-               }); 
-	   mA.setNodes(plNames);
-	   
-	   mA.dijkstraDistance(new PlanetNames("A","Earth"));*/
-	   
-	   
-	   
-} 
-  /*
-    may require later
-    
-     ExecutorService exService = Executors.newFixedThreadPool(5);
-         Future disFuture  = exService.submit( distanceCalculator()); 
-         
-         System.out.println("Distance calculation done? " + disFuture.isDone());
-         Float minDistance = 0f;
-		try {
-			minDistance = (Float)disFuture.get();
-		} catch (InterruptedException e) {
-			System.out.println("Distance calculation interrupted ");
-		} catch (ExecutionException e) {
-			System.out.println("Distance calculation execution interrupted ");
-		}
-
-         System.out.println("future done? " + disFuture.isDone());
-         System.out.print("result: " + minDistance);
-   */
+   
+  
+   
 }

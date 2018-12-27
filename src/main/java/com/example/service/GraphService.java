@@ -18,7 +18,13 @@ import com.example.repositories.RoutesRepository;
 import com.example.util.DijkstraAlgoNew;
 import com.example.util.Graph;
 
-
+/**
+ * This is the Graph Service class that prepares the distance based graph 
+ * for all planets
+ * 
+ * @author vinayak_anvekar
+ *
+ */
 @Configuration
 @Service
 @Transactional

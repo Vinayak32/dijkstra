@@ -30,13 +30,14 @@ import com.example.service.PlanetService;
 import com.example.service.RoutesService;
 import com.example.util.DijkstraAlgo;
 
-@Controller /* this is sufficient @ResponseBody not required on method level */
-/*
-  @RequestBody and @RespondeBody both are doing the JSON 
-  Update: Ever since Spring 4.x, you usually won't use @ResponseBody on method level,
-   but rather @RestController on class level, with the same effect. 
-   See Creating REST Controllers with the @RestController annotation
+/**
+ * This is the Main controller for calculating the distance from Planet from A to B
+ *  
+ * @author vinayak_anvekar
+ *
  */
+
+@Controller 
 public class DijkstraController {
 
 	
